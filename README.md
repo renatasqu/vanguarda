@@ -38,8 +38,19 @@ As regras de desempenho usam o menor CPI/SPI: saudável ≥ 0,95; atenção ≥ 
 
 O Dashboard filtra divisão/situação e o CSV respeita a seleção. Totais de custos e médias de prazos exigem cobertura completa. Cada projeto apresenta quatro gráficos com valores numéricos. PV não é um cronograma de pagamentos, e não há série histórica fabricada.
 
-O Simulador varia despesas e prazo original, mantém orçamento/execução física e usa o mesmo motor. Dias decorridos são informativos, não entram na projeção de prazo. As projeções mantêm CPI/SPI constantes e não consideram caminho crítico, dependências ou mudanças de escopo. São regras demonstrativas, sem IA treinada, probabilidades ou métricas de precisão.
+O Simulador varia execução realizada e despesas acumuladas, mantém orçamento, execução planejada e prazo original e usa o mesmo motor. Dias decorridos são informativos, não entram na projeção de prazo. As projeções mantêm CPI/SPI constantes e não consideram caminho crítico, dependências ou mudanças de escopo. São regras demonstrativas, sem IA treinada, probabilidades ou métricas de precisão.
 
 ## Verificação
 
 `node --test tests/engine.test.cjs` verifica fórmulas, limites, ausência de dados e divisões por zero. O motor não exige dependências externas.
+
+
+## Simulador e ações corretivas
+
+Controles numéricos e deslizantes para execução realizada (%) e despesas acumuladas (R$ milhões). Comparação imediata entre cenário original e simulado: CPI, SPI, estimativas, situação, alertas, variações e gráficos. Restaurar volta aos valores do projeto selecionado, preservando ações e verificações. A base original nunca é alterada.
+
+Recomendações ao PMO derivam dos indicadores, qualidade dos dados, riscos e escopo. Verificações legais, ambientais e contratuais mantêm estado e referência independentes. Nenhuma delas modifica CPI/SPI nem constitui aprovação automática; bom desempenho não compensa uma pendência. Selecionar “Verificado no exercício” exige referência antes do registro da ação.
+
+Ações corretivas incluem responsável, prazo opcional, cópia da base e cenário, verificações e recomendações. São salvas no localStorage deste navegador. Se o armazenamento falhar, ficam apenas na sessão e a interface orienta exportar. Rascunhos e ajustes de cenário ficam na memória da sessão; registros salvos voltam após recarregar. Não há envio externo ou registro em sistema corporativo.
+
+A exportação Markdown inclui cenários, alertas e fatores, recomendações, verificações independentes, histórico de ações, rascunho e limitações. O horário usa America/Sao_Paulo.

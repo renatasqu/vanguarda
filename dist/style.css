@@ -336,3 +336,40 @@ dialog::backdrop { background: #102e27a6; }
 .scenario-alerts { padding-left: 20px; color: #f4fcf8; font-size: 12px; }
 .scenario-alerts p { font-size: 12px; }
 .detail-signals > li, .scenario-alerts > li { margin-bottom: 14px; }
+
+/* Scenario workspace and independent review controls. */
+.simulator-layout { grid-template-columns: minmax(260px, .8fr) minmax(0, 1.5fr); align-items: start; }
+.sim-controls input[type=number], .check-grid input, .action-panel input, .action-panel textarea {
+  width: 100%; min-height: 44px; border: 1px solid #b7cfc4; border-radius: 12px;
+  background: var(--surface); color: var(--ink); padding: 10px 12px; font: inherit;
+}
+.sim-controls input[type=range] { margin-top: 10px; }
+.independent-checks, .recommendation-panel, .action-panel { margin-top: 23px; }
+.check-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 20px 0; }
+.check-grid fieldset { min-width: 0; border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: var(--subsurface); }
+.check-grid legend { font-weight: 700; padding: 0 6px; }
+.check-grid label, .action-panel label { display: block; font-size: 12px; font-weight: 600; margin: 12px 0 8px; }
+.check-grid select { width: 100%; font-size: 12px; }
+.recommendation-panel ul { padding-left: 20px; font-size: 13px; color: var(--muted); line-height: 1.8; }
+.recommendation-panel li { margin-top: 10px; }
+.action-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+.action-panel textarea { resize: vertical; min-height: 110px; }
+.action-record { margin-top: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--subsurface); }
+.action-record p { white-space: pre-wrap; overflow-wrap: anywhere; }
+#action-feedback, #sim-feedback { color: #205d49; font-size: 12px; line-height: 1.7; }
+.scenario-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+.table-scroll .scenario-table { min-width: 530px; }
+.scenario-table th, .scenario-table td { padding: 12px 10px; font-size: 11px; }
+.scenario-table th[scope=row] { letter-spacing: 0; font-size: 12px; background: var(--subsurface); }
+.original-alerts { margin-top: 20px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--subsurface); }
+.original-alerts summary { cursor: pointer; font-weight: 600; font-size: 12px; padding: 6px 0; }
+.original-alerts summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
+.sim-limitations { margin-top: 23px; }
+@media(max-width: 1100px) {
+  .simulator-layout { grid-template-columns: minmax(0, 1fr); }
+  .check-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media(max-width: 760px) {
+  .action-fields, .scenario-charts { grid-template-columns: minmax(0, 1fr); }
+  .table-scroll .scenario-table { min-width: 530px; }
+}

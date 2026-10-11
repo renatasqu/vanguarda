@@ -373,3 +373,10 @@ dialog::backdrop { background: #102e27a6; }
   .action-fields, .scenario-charts { grid-template-columns: minmax(0, 1fr); }
   .table-scroll .scenario-table { min-width: 530px; }
 }
+/* Nested filter controls must not inherit the mobile row's flex basis. */
+@media(max-width:760px) {
+  .filter-control select, .filter-control input { flex: 0 0 auto; }
+  html { scroll-padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
+  :where(button, a, input, select, textarea, summary) { scroll-margin-bottom: calc(110px + env(safe-area-inset-bottom)); }
+}
+#close-detail.dialog-close { position: sticky; top: 0; z-index: 1; width: auto; margin: 0 0 14px auto; background: #f8fcfa; }

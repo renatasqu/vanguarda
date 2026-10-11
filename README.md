@@ -4,11 +4,11 @@ Protótipo web em português baseado na Atividade 3 de vanguarda_pdf.pdf (págin
 
 ## Executar
 
-`python3 -m http.server 5173 --directory dist` na pasta vanguarda. Abra http://localhost:5173. Sem dependências de execução. Fontes Google opcionais com fontes de sistema alternativas.
+`npm start` na pasta vanguarda (Node.js 20+). Abra http://127.0.0.1:5173. Alternativa: `python3 -m http.server 5173 --directory dist`. Sem dependências de execução. Fontes Google opcionais com fontes de sistema alternativas.
 
 ## Funcionalidades
 
-Filtros, detalhes, CSV, cenários de custo e prazo, radar explicável e sinal de validação dos dados. Não há persistência ou conexão com sistemas reais.
+Filtros, detalhes, CSV, cenários de custo e prazo, radar explicável e sinal de validação dos dados. Ações corretivas persistem localmente no navegador; não há conexão com sistemas corporativos.
 
 ## Aderência e limites
 
@@ -23,7 +23,7 @@ O botão “Sem transparência” alterna superfícies sólidas e guarda a prefe
 
 ## Motor demonstrativo por valor agregado
 
-Implementado em `dist/engine.js`, compartilhado entre Dashboard, Projetos, detalhes e Simulador. Situação e alertas são recalculados da base, sem rótulos fixos ou índice ponderado paralelo.
+Implementado em `dist/engine.js`, acessado pelo contrato de `dist/analysis-service.js` e compartilhado entre Dashboard, Projetos, detalhes e Simulador. Situação e alertas são recalculados da base, sem rótulos fixos ou índice ponderado paralelo.
 
 - Realizada relativa = execução realizada (%) / 100.
 - Despesa relativa = despesas / orçamento.
@@ -54,3 +54,13 @@ Recomendações ao PMO derivam dos indicadores, qualidade dos dados, riscos e es
 Ações corretivas incluem responsável, prazo opcional, cópia da base e cenário, verificações e recomendações. São salvas no localStorage deste navegador. Se o armazenamento falhar, ficam apenas na sessão e a interface orienta exportar. Rascunhos e ajustes de cenário ficam na memória da sessão; registros salvos voltam após recarregar. Não há envio externo ou registro em sistema corporativo.
 
 A exportação Markdown inclui cenários, alertas e fatores, recomendações, verificações independentes, histórico de ações, rascunho e limitações. O horário usa America/Sao_Paulo.
+
+
+## Entrega e apresentação
+
+- [Abrir e apresentar](docs/APRESENTACAO.md): execução, roteiro de cinco minutos e repetição dos testes.
+- [Verificações e limites](docs/VERIFICACOES.md): verificações concluídas, correções e limitações.
+- [Arquitetura e contrato](docs/ARQUITETURA.md): separação da análise e integração futura.
+- [Modelo futuro](docs/MODELO_FUTURO.md): dados históricos, prevenção de vazamento e validação temporal.
+
+A execução do site é estática e sem dependências externas de JavaScript. As dependências de desenvolvimento são apenas para testes automatizados. `npm test` executa 10 testes de motor/contrato; `npm ci` e `npm run test:browser` repetem os fluxos no Chrome e geram capturas em output/qa.

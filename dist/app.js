@@ -9,7 +9,7 @@ const projects=[
 // Entradas sintéticas; não são dados operacionais do estudo de caso.
 const signals=[{scope:1,openRisks:1,history:12,validated:true},{scope:4,openRisks:4,history:8,validated:true},{scope:3,openRisks:3,history:10,validated:false},{scope:1,openRisks:1,history:14,validated:true},{scope:2,openRisks:1,history:9,validated:true},{scope:3,openRisks:3,history:7,validated:true}];
 projects.forEach((p,i)=>{Object.assign(p,signals[i]);Object.defineProperty(p,'status',{enumerable:true,get:()=>indicators(p).status});});
-const indicators=p=>VanguardaEngine.calculate(p);
+const indicators=p=>VanguardaAnalysis.evaluate(p);
 const criticalSignals=p=>indicators(p).alerts.filter(a=>a.critical).map(a=>a.title+' — '+a.factors);
 const alertMarkup=m=>m.alerts.map(a=>`<li><b>${escapeHTML(a.title)}</b><p>${escapeHTML(a.factors)}</p></li>`).join('')||'<li>Nenhum alerta pelas regras demonstrativas atuais.</li>';
 const sumValues=values=>values.length&&values.every(Number.isFinite)?values.reduce((sum,v)=>sum+v,0):null;
@@ -76,7 +76,7 @@ function detail(id){
  <h3>Riscos e sinais monitorados</h3><p>${p.risk}</p><p>${p.openRisks} riscos abertos · ${p.scope} alterações de escopo.</p><ul class="detail-signals">${alertMarkup(m)}</ul>
  <h3>Qualidade dos dados</h3><p>${p.validated?'Registros sintéticos validados.':'Registros pendentes de validação: revisar despesas e andamento antes de utilizar as projeções.'} Histórico ilustrativo de ${p.history} projetos; não há treinamento de modelo.</p>
  <h3>Próxima ação sugerida ao PMO</h3><p>${p.action}</p>`;
- dialogOpener=document.activeElement;document.querySelector('dialog').showModal();document.querySelector('#close-detail').focus();
+ dialogOpener=document.activeElement;document.querySelector('dialog').showModal();const title=document.querySelector('#detail-title');title.setAttribute('tabindex','-1');title.focus({preventScroll:true});document.querySelector('dialog').scrollTop=0;
 }
 function exportData(){
  const fmt=n=>Number.isFinite(n)?String(n).replace('.',','):'';

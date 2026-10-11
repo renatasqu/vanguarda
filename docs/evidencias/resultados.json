@@ -1,0 +1,120 @@
+{
+  "layouts": [
+    {
+      "device": "desktop",
+      "route": "dashboard",
+      "width": 1440,
+      "scroll": 1440,
+      "overflows": []
+    },
+    {
+      "device": "desktop",
+      "route": "projetos",
+      "width": 1440,
+      "scroll": 1440,
+      "overflows": []
+    },
+    {
+      "device": "desktop",
+      "route": "simulador",
+      "width": 1440,
+      "scroll": 1440,
+      "overflows": []
+    },
+    {
+      "device": "desktop",
+      "route": "metodologia",
+      "width": 1440,
+      "scroll": 1440,
+      "overflows": []
+    },
+    {
+      "device": "mobile",
+      "route": "dashboard",
+      "width": 390,
+      "scroll": 390,
+      "overflows": []
+    },
+    {
+      "device": "mobile",
+      "route": "projetos",
+      "width": 390,
+      "scroll": 390,
+      "overflows": []
+    },
+    {
+      "device": "mobile",
+      "route": "simulador",
+      "width": 390,
+      "scroll": 390,
+      "overflows": []
+    },
+    {
+      "device": "mobile",
+      "route": "metodologia",
+      "width": 390,
+      "scroll": 390,
+      "overflows": []
+    },
+    {
+      "device": "small-mobile",
+      "route": "dashboard",
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    {
+      "device": "small-mobile",
+      "route": "projetos",
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    {
+      "device": "small-mobile",
+      "route": "simulador",
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    {
+      "device": "small-mobile",
+      "route": "metodologia",
+      "width": 320,
+      "scroll": 320,
+      "overflows": []
+    },
+    {
+      "device": "tablet",
+      "route": "dashboard",
+      "width": 768,
+      "scroll": 768,
+      "overflows": []
+    },
+    {
+      "device": "tablet",
+      "route": "projetos",
+      "width": 768,
+      "scroll": 768,
+      "overflows": []
+    },
+    {
+      "device": "tablet",
+      "route": "simulador",
+      "width": 768,
+      "scroll": 768,
+      "overflows": []
+    },
+    {
+      "device": "tablet",
+      "route": "metodologia",
+      "width": 768,
+      "scroll": 768,
+      "overflows": []
+    }
+  ],
+  "findings": [],
+  "errors": [],
+  "flows": "passed",
+  "browser": "154.0.8037.99"
+}

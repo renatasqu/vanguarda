@@ -1,0 +1,6 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const {hierarchy,arc}=require('../dist/sunburst.js');
+const source=fs.readFileSync(require('node:path').join(__dirname,'../dist/app.js'),'utf8');
+const projects=vm.runInNewContext(source.slice(0,source.indexOf('];')+2)+';projects');
+test('Sunburst: orçamento total 240 R$ milhões, cada projeto uma vez e divisões reconciliadas',()=>{const tree=hierarchy(projects);assert.equal(tree.value,240);assert.deepEqual(tree.children.map(d=>d.value),[84,56,100]);assert.equal(tree.children.flatMap(d=>d.children).length,6);assert.equal(tree.children.reduce((s,d)=>s+d.children.reduce((v,p)=>v+p.value,0),0),tree.value);assert.equal(hierarchy([...projects,...projects]).value,240);});
+test('Sunburst: filtros e ausência de base não somam percentuais ou índices',()=>{assert.equal(hierarchy(projects.filter(p=>p.sector==='Energia')).value,100);assert.equal(hierarchy([]).value,0);const tree=hierarchy([{id:'x',sector:'A',budget:null,progress:90},{id:'y',sector:'A',budget:5,cpi:10},{id:'z',sector:'A',budget:0,spi:99}]);assert.equal(tree.value,5);assert.equal(tree.excluded,1);assert.ok(!arc(0,Math.PI*2,78,138).includes('NaN'));});

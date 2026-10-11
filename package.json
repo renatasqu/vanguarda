@@ -4,9 +4,10 @@
   "private": true,
   "description": "Radar PMO demonstrativo com motor de valor agregado substituível",
   "scripts": {
-    "start": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs --demo",
     "test": "node --test tests/*.test.cjs",
-    "test:browser": "node tests/browser.mjs"
+    "test:browser": "node tests/browser.mjs",
+    "start:secure": "node scripts/serve.mjs"
   },
   "engines": {
     "node": ">=20"

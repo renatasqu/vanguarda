@@ -4,7 +4,7 @@ Protótipo web em português baseado na Atividade 3 de vanguarda_pdf.pdf (págin
 
 ## Executar
 
-`npm start` na pasta vanguarda (Node.js 20+). Abra http://127.0.0.1:5173. Alternativa: `python3 -m http.server 5173 --directory dist`. Sem dependências de execução. Fontes Google opcionais com fontes de sistema alternativas.
+`npm start` na pasta vanguarda (Node.js 20+). Abra http://127.0.0.1:5173. Não use servidor estático: o acesso protegido exige o servidor Node. Sem dependências de execução. Fontes Google opcionais com fontes de sistema alternativas.
 
 ## Funcionalidades
 
@@ -16,7 +16,7 @@ A atividade propõe IA preditiva: comparar planejado e realizado, antecipar atra
 
 ## Aparência e acessibilidade
 
-Identidade Liquid Glass em verde profundo, branco e azul. Cartões com superfícies translúcidas, desfoque condicionado ao suporte do navegador, bordas iluminadas e sombras suaves. Navegação lateral flutuante em desktop e dock inferior em celular.
+Identidade Liquid Glass escura baseada no Cadence, com fundos #060610/#0A0A18/#0D0D1F, acentos teal, títulos Outfit e texto Inter. Cartões com superfícies translúcidas, desfoque condicionado ao suporte do navegador, bordas iluminadas e sombras suaves. Navegação lateral flutuante em desktop e dock inferior em celular.
 
 O botão “Sem transparência” alterna superfícies sólidas e guarda a preferência localmente quando o navegador permite. A preferência do sistema `prefers-reduced-transparency` é respeitada até o usuário escolher um modo. Navegadores sem suporte a backdrop-filter recebem superfícies opacas. Movimento reduzido, cores forçadas, foco visível, link de salto para o conteúdo, identificação do modal e retorno de foco estão contemplados. Tabelas podem ser percorridas horizontalmente com o teclado.
 
@@ -64,3 +64,18 @@ A exportação Markdown inclui cenários, alertas e fatores, recomendações, ve
 - [Modelo futuro](docs/MODELO_FUTURO.md): dados históricos, prevenção de vazamento e validação temporal.
 
 A execução do site é estática e sem dependências externas de JavaScript. As dependências de desenvolvimento são apenas para testes automatizados. `npm test` executa 10 testes de motor/contrato; `npm ci` e `npm run test:browser` repetem os fluxos no Chrome e geram capturas em output/qa.
+
+
+A refatoração visual e os componentes estão descritos em [TEMA.md](docs/TEMA.md). Stack, dependências, rotas, dados e motor foram preservados.
+
+## Acesso e Incorporações
+
+Login OIDC, autorização por subject no servidor e vitrine comercial interna com exemplos fictícios. O acesso fica bloqueado até configurar o provedor e a lista de autorizados. Consulte [configuração de acesso](docs/ACESSO.md). As ações do simulador agora persistem no servidor por conta, com exportação preservada.
+
+## Apresentar o protótipo
+
+Execute `npm start`, abra http://127.0.0.1:5173/login e clique em **Confirmar**. A entrada é demonstrativa e abre diretamente o Dashboard, sem configuração externa. Para autenticação corporativa real, use `npm run start:secure` com a configuração em [ACESSO.md](docs/ACESSO.md).
+
+## Sunburst e Log do sistema
+
+Dashboard com Sunburst de orçamento (R$ milhões), exploração por divisão/projeto e tabela acessível. Log persistente no servidor com consulta administrativa, filtros e paginação; ações do Simulador podem ser adicionadas, editadas e excluídas com auditoria. A demonstração é explicitamente identificada. Consulte [implementação e limites](docs/SUNBURST-AUDITORIA.md).

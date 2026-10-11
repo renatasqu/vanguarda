@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Entrar · Vanguarda</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="login-page">
+  <a class="skip-link" href="#confirm-access">Pular para o acesso</a>
+  <main class="login-layout">
+    <section class="login-intro" aria-labelledby="login-title">
+      <a class="brand" href="/login"><span class="mark" aria-hidden="true">V</span> vanguarda<span class="brand-dot" aria-hidden="true">.</span></a>
+      <h1 id="login-title">Visão integrada<br>do portfólio.</h1>
+      <p>Acompanhe o portfólio, entenda os sinais e mantenha cada projeto em vista.</p>
+    </section>
+    <section class="login-panel" aria-labelledby="access-title">
+      <h2 id="access-title">Entrar no Vanguarda</h2>
+      <p class="login-description">Acesso exclusivo para pessoas autorizadas.</p>
+      <form action="/auth/login" method="get" id="confirm-form">
+        <button id="confirm-access" class="button primary" type="submit" aria-describedby="login-status">Confirmar</button>
+        <p id="login-status" role="status" aria-live="polite" aria-atomic="true">Sua identidade será validada pelo provedor corporativo.</p>
+      </form>
+      <small class="login-note">Não há cadastro público. Solicite acesso à administração.</small>
+    </section>
+  </main>
+  <script src="/login.js"></script>
+</body>
+</html>

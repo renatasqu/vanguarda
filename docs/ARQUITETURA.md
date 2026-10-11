@@ -2,6 +2,7 @@
 
 - `dist/engine.js`: motor puro determinístico; não acessa DOM, navegador, armazenamento ou rede. Recebe uma cópia de entradas em unidades documentadas e retorna números finitos ou null, situação, motivos e alertas.
 - `dist/analysis-service.js`: contrato validado de provedor. A interface usa `VanguardaAnalysis.evaluate`; não importa as fórmulas do motor diretamente. A resposta inclui `metadata.id`, `version` e `kind`.
+- `dist/ui.js`: componentes de apresentação e ícones, sem dependência do motor.
 - `dist/app.js`: filtros, agregações, apresentação e navegação.
 - `dist/simulator.js`: entrada/saída do cenário, verificações independentes, revisão do PMO, exportação e registros locais.
 

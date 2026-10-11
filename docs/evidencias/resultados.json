@@ -57,31 +57,31 @@
       "overflows": []
     },
     {
-      "device": "small-mobile",
+      "device": "laptop",
       "route": "dashboard",
-      "width": 320,
-      "scroll": 320,
+      "width": 1024,
+      "scroll": 1024,
       "overflows": []
     },
     {
-      "device": "small-mobile",
+      "device": "laptop",
       "route": "projetos",
-      "width": 320,
-      "scroll": 320,
+      "width": 1024,
+      "scroll": 1024,
       "overflows": []
     },
     {
-      "device": "small-mobile",
+      "device": "laptop",
       "route": "simulador",
-      "width": 320,
-      "scroll": 320,
+      "width": 1024,
+      "scroll": 1024,
       "overflows": []
     },
     {
-      "device": "small-mobile",
+      "device": "laptop",
       "route": "metodologia",
-      "width": 320,
-      "scroll": 320,
+      "width": 1024,
+      "scroll": 1024,
       "overflows": []
     },
     {

@@ -12,7 +12,7 @@ Filtros, detalhes, CSV, cenários de custo e prazo, radar explicável e sinal de
 
 ## Aderência e limites
 
-A atividade propõe IA preditiva: comparar planejado e realizado, antecipar atrasos e custos, emitir alertas verificados pelo PMO. A interface demonstra esse fluxo por regras ilustrativas. Não executa modelo treinado e o índice de exposição não é probabilidade. Pesos, faixas, indicadores SPI/CPI e valores sintéticos são escolhas de implementação, descritas na Metodologia. Os campos de histórico não são usados para treinamento. Nenhum dado sintético é apresentado como dado operacional do caso.
+A atividade propõe IA preditiva: comparar planejado e realizado, antecipar atrasos e custos, emitir alertas verificados pelo PMO. A interface demonstra esse fluxo por regras ilustrativas. Não executa modelo treinado e os alertas não são probabilidades. Faixas e indicadores SPI/CPI e valores sintéticos são escolhas de implementação, descritas na Metodologia. Os campos de histórico não são usados para treinamento. Nenhum dado sintético é apresentado como dado operacional do caso.
 
 ## Aparência e acessibilidade
 
@@ -21,15 +21,25 @@ Identidade Liquid Glass em verde profundo, branco e azul. Cartões com superfíc
 O botão “Sem transparência” alterna superfícies sólidas e guarda a preferência localmente quando o navegador permite. A preferência do sistema `prefers-reduced-transparency` é respeitada até o usuário escolher um modo. Navegadores sem suporte a backdrop-filter recebem superfícies opacas. Movimento reduzido, cores forçadas, foco visível, link de salto para o conteúdo, identificação do modal e retorno de foco estão contemplados. Tabelas podem ser percorridas horizontalmente com o teclado.
 
 
-## Indicadores e projeções calculados
+## Motor demonstrativo por valor agregado
 
-O Dashboard filtra por divisão e situação. Quantidade de projetos, orçamento, despesas, avanço, situações e sinais são recalculados da seleção; o CSV usa os mesmos filtros. Situação deriva do menor SPI/CPI, sem rótulos fixos. Sinais contam cada regra acionada (desempenho crítico, projeção de custo ou prazo mais de 20% acima da base e validação pendente); o total de projetos sinalizados é mostrado separadamente.
+Implementado em `dist/engine.js`, compartilhado entre Dashboard, Projetos, detalhes e Simulador. Situação e alertas são recalculados da base, sem rótulos fixos ou índice ponderado paralelo.
 
-- EV = orçamento × execução realizada / 100; PV = orçamento × execução planejada / 100.
-- SPI = EV / PV; CPI = EV / despesas.
-- Custo final projetado = despesas / (execução realizada / 100).
-- Prazo total projetado = dias decorridos / (execução realizada / 100).
+- Realizada relativa = execução realizada (%) / 100.
+- Despesa relativa = despesas / orçamento.
+- CPI = realizada relativa / despesa relativa.
+- SPI = execução realizada / execução planejada.
+- Custo final estimado = orçamento / CPI.
+- Prazo total estimado = prazo original / SPI.
 
-Os dias decorridos são entradas demonstrativas. As projeções assumem continuidade do ritmo; não constituem inferência de IA treinada. O custo do portfólio é a soma das projeções e o prazo é uma média, não uma data final corporativa. Zero de execução gera ausência de base para projetar. Dias são arredondados para cima na apresentação.
+Valores ausentes, textos, negativos, não finitos e porcentagens fora de 0–100 não são convertidos em zero. Orçamento e prazo original devem ser positivos. Despesas e execuções podem ser zero, mas denominadores zero impedem a divisão e produzem ausência de base com motivo. Indicadores independentes continuam disponíveis. Estimativas nunca retornam NaN ou infinito.
 
-Ao selecionar um projeto, o modal apresenta orçamento, despesas, prazo base, dias decorridos, execução planejada/realizada, SPI/CPI, riscos e quatro gráficos com valores textuais. PV representa valor equivalente ao avanço planejado, não um cronograma de pagamentos. Não há curvas históricas fabricadas ou métricas de precisão inventadas.
+As regras de desempenho usam o menor CPI/SPI: saudável ≥ 0,95; atenção ≥ 0,85 e < 0,95; crítico < 0,85. Custo ou prazo estimado mais de 20% acima da base aciona um sinal crítico. Base insuficiente e validação pendente também geram sinais. Cada alerta explica seus fatores; as faixas são demonstrativas, não aprendidas. Sinais e projetos sinalizados são contados separadamente.
+
+O Dashboard filtra divisão/situação e o CSV respeita a seleção. Totais de custos e médias de prazos exigem cobertura completa. Cada projeto apresenta quatro gráficos com valores numéricos. PV não é um cronograma de pagamentos, e não há série histórica fabricada.
+
+O Simulador varia despesas e prazo original, mantém orçamento/execução física e usa o mesmo motor. Dias decorridos são informativos, não entram na projeção de prazo. As projeções mantêm CPI/SPI constantes e não consideram caminho crítico, dependências ou mudanças de escopo. São regras demonstrativas, sem IA treinada, probabilidades ou métricas de precisão.
+
+## Verificação
+
+`node --test tests/engine.test.cjs` verifica fórmulas, limites, ausência de dados e divisões por zero. O motor não exige dependências externas.

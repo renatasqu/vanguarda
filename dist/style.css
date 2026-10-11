@@ -333,3 +333,6 @@ dialog::backdrop { background: #102e27a6; }
   .compare-track { border: 1px solid CanvasText; }
   .compare-fill { background: Highlight; forced-color-adjust: none; }
 }
+.scenario-alerts { padding-left: 20px; color: #f4fcf8; font-size: 12px; }
+.scenario-alerts p { font-size: 12px; }
+.detail-signals > li, .scenario-alerts > li { margin-bottom: 14px; }

@@ -13,3 +13,9 @@ Filtros, detalhes, CSV, cenários de custo e prazo, radar explicável e sinal de
 ## Aderência e limites
 
 A atividade propõe IA preditiva: comparar planejado e realizado, antecipar atrasos e custos, emitir alertas verificados pelo PMO. A interface demonstra esse fluxo por regras ilustrativas. Não executa modelo treinado e o índice de exposição não é probabilidade. Pesos, faixas, indicadores SPI/CPI e valores sintéticos são escolhas de implementação, descritas na Metodologia. Os campos de histórico não são usados para treinamento. Nenhum dado sintético é apresentado como dado operacional do caso.
+
+## Aparência e acessibilidade
+
+Identidade Liquid Glass em verde profundo, branco e azul. Cartões com superfícies translúcidas, desfoque condicionado ao suporte do navegador, bordas iluminadas e sombras suaves. Navegação lateral flutuante em desktop e dock inferior em celular.
+
+O botão “Sem transparência” alterna superfícies sólidas e guarda a preferência localmente quando o navegador permite. A preferência do sistema `prefers-reduced-transparency` é respeitada até o usuário escolher um modo. Navegadores sem suporte a backdrop-filter recebem superfícies opacas. Movimento reduzido, cores forçadas, foco visível, link de salto para o conteúdo, identificação do modal e retorno de foco estão contemplados. Tabelas podem ser percorridas horizontalmente com o teclado.

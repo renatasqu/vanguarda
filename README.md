@@ -1,5 +1,7 @@
 # Vanguarda — Radar PMO
 
+Trabalho FIAP.
+
 Protótipo web em português baseado na Atividade 3 de vanguarda_pdf.pdf (páginas 4–5). Preserva Dashboard, Projetos, Simulador e Metodologia. Seis projetos sintéticos: dois por divisão (Incorporações, Logística e Energia solar).
 
 ## Executar

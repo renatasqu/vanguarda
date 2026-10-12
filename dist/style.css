@@ -880,3 +880,47 @@ header .account-trigger span { margin: 0; }
 @media(prefers-reduced-transparency:reduce) { .account-trigger { background: var(--panel); backdrop-filter: none; } }
 @media(prefers-reduced-motion:reduce) { :is(button,.button,.account-trigger,select):hover:not(:disabled) { transform: none; } }
 @media(forced-colors:active) { .account-trigger,.account-avatar { background: Canvas; color: CanvasText; border: 1px solid CanvasText; box-shadow: none; } }
+
+/* Cards compactos e navegação com maior profundidade. */
+:root { --content-padding: 14px; --content-gap: 14px; }
+main { padding-top: 16px; }
+header,aside { box-shadow: -6px 10px 24px rgba(0,0,0,.34), inset 1px 1px 0 rgba(225,229,255,.12); }
+header { border: 1px solid rgba(190,198,255,.13); }
+nav a { min-height: 44px; border: 1px solid transparent; }
+nav a:hover { background: rgba(130,149,255,.12); border-color: rgba(190,198,255,.2); }
+nav a.active { box-shadow: -4px 5px 12px rgba(0,0,0,.3), inset 3px 0 0 var(--accent-light); }
+:is(h1,h2,h3,figcaption,.subtitle,.heading p,.eyebrow,.kpi-title,.aside-label,.nav-section-label,.method-topic > summary p) {
+ text-shadow: -2px 2px 4px rgba(0,0,0,.5);
+}
+.title-colon { margin-left: 1px; }
+.compact-card { min-height: 68px; height: auto; }
+.compact-disclosure > summary { position: relative; display: block; list-style: none; cursor: pointer; padding-right: 30px; min-height: 40px; }
+.compact-disclosure > summary::-webkit-details-marker { display: none; }
+.compact-disclosure > summary::after { content: '＋'; position: absolute; right: 0; top: 4px; color: var(--accent-light); font-size: 22px; }
+.compact-disclosure[open] > summary::after { content: '−'; }
+.compact-disclosure > summary h2 { font-size: 17px; margin: 0; }
+.compact-hint { display: block; font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+.compact-disclosure[open] .compact-hint { display: none; }
+.compact-content { padding-top: 14px; }
+.compact-content > .card-head:empty { display: none; }
+.compact-disclosure > summary:hover h2 { color: var(--accent-light); }
+:is(.method-topic,.independent-checks,.recommendation-panel,.action-panel,.sim-limitations) { padding: 14px; }
+:is(.method-topic,.independent-checks,.recommendation-panel,.action-panel,.sim-limitations) > summary h2 { font-size: 17px; }
+:is(.method-topic,.independent-checks,.recommendation-panel,.action-panel) > summary p { font-size: 12px; margin-top: 3px; }
+.stat-card { padding: 14px; min-height: 0; }
+.stat-card .value { font-size: 26px; margin: 6px 0; }
+.property-card img { max-height: 150px; }
+@media(min-width:761px) {
+ .method-grid,.project-grid,.property-grid,.dashboard-charts { gap: 14px; }
+}
+@media(max-width:760px) {
+ :root { --content-padding: 12px; --content-gap: 12px; }
+ main { padding-top: 12px; }
+ .compact-card { min-height: 64px; }
+}
+@media(forced-colors:active) {
+ header,aside,nav a.active { box-shadow: none; border: 1px solid CanvasText; }
+ :is(h1,h2,h3,figcaption,.subtitle,.heading p,.eyebrow,.kpi-title) { text-shadow: none; }
+}
+
+.portfolio-register.compact-card { padding: 14px; }

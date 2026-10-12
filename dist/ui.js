@@ -20,12 +20,37 @@
  const Icon=name=>`<svg class="icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${icons[name]||icons.activity}</svg>`;
  const GlassCard=({content,className='',tag='section'})=>`<${tag} class="card glass-card ${className}">${content}</${tag}>`;
  const GovernanceCard=({label,note})=>`<article class="governance-kpi"><h3>${escape(label)}</h3><b class="governance-value">Sem dados</b><p>${escape(note)}</p></article>`;
- const StatCard=({label,value,note,icon,tone=''})=>GlassCard({className:`stat-card ${tone}`,content:`<div class="kpi-title">${escape(label)}<span class="kpi-icon">${Icon(icon)}</span></div><div class="value projected-value">${value}</div><div class="kpi-note">${note}</div>`});
+ const StatCard=({label,value,note,icon,tooltip='',tone=''})=>GlassCard({className:`stat-card ${tone}`,content:`<div class="kpi-title" ${tooltip?`tabindex="0" title="${escape(tooltip)}" aria-label="${escape(label+'. '+tooltip)}"`:''}>${escape(label)}<span class="kpi-icon">${Icon(icon)}</span></div><div class="value projected-value">${value}</div><div class="kpi-note">${note}</div>`});
  const StatusBadge=status=>`<span class="status status-badge ${status==='Crítico'?'Critico':status==='Atenção'?'Atencao':status==='Sem base'?'neutral':''}"><i class="status-dot" aria-hidden="true"></i>${escape(status)}</span>`;
  const Button=({label,id='',className='',icon='',type='button',attributes='',disabled=false,loading=false})=>`<button type="${type}" ${id?`id="${escape(id)}"`:''} class="button ${className}" ${disabled||loading?'disabled':''} ${loading?'aria-busy="true"':''} ${attributes}>${icon?Icon(icon):''}<span>${escape(label)}</span></button>`;
  const FilterBar=content=>`<div class="filters filter-bar">${content}</div>`;
  const Field=content=>`<div class="field form-field">${content}</div>`;
  const ChartContainer=(title,content)=>`<figure class="comparison chart-container"><figcaption>${escape(title)}</figcaption>${content}</figure>`;
- function mount(rootElement=document){rootElement.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=Icon(el.dataset.icon);});}
+ function compactCards(rootElement=document){
+  rootElement.querySelectorAll('.dashboard-charts > .card,.attention-panel,.portfolio-register,.project-card,.property-card').forEach(card=>{
+   if(card.querySelector(':scope > .compact-disclosure'))return;
+   const heading=card.querySelector('h2');if(!heading)return;
+   const disclosure=document.createElement('details');disclosure.className='compact-disclosure';
+   const summary=document.createElement('summary');summary.append(heading);
+   const hint=document.createElement('span');hint.className='compact-hint';hint.textContent='Clique para expandir';summary.append(hint);
+   const content=document.createElement('div');content.className='compact-content';
+   while(card.firstChild)content.append(card.firstChild);
+   disclosure.append(summary,content);card.append(disclosure);card.classList.add('compact-card');
+  });
+ }
+ function titlePunctuation(rootElement=document){
+  rootElement.querySelectorAll('h1,h2,h3,figcaption,.kpi-title,.eyebrow,.aside-label,.nav-section-label').forEach(el=>{
+   if(el.querySelector('.title-colon')||el.textContent.trim().endsWith(':'))return;
+   const colon=document.createElement('span');colon.className='title-colon';colon.setAttribute('aria-hidden','true');colon.textContent=':';if(el.classList.contains('kpi-title')&&el.firstChild?.nodeType===3){const label=document.createElement('span');label.textContent=el.firstChild.textContent;el.firstChild.replaceWith(label);label.append(colon);}else el.append(colon);
+  });
+ }
+ function mount(rootElement=document){rootElement.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=Icon(el.dataset.icon);});compactCards(rootElement);titlePunctuation(rootElement);}
+ // As páginas e os resultados do simulador são atualizados sem recarregar o documento.
+ const observer=new MutationObserver(records=>{
+  if(records.some(record=>[...record.addedNodes].some(node=>node.nodeType===1&&!node.classList.contains('title-colon')))){
+   compactCards(document);titlePunctuation(document);
+  }
+ });
+ observer.observe(document.body,{childList:true,subtree:true});
  root.VanguardaUI=Object.freeze({GlassCard,GovernanceCard,StatCard,StatusBadge,Button,FilterBar,Field,ChartContainer,Icon,mount});
 })(globalThis);
